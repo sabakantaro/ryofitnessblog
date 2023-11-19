@@ -5,13 +5,29 @@ import Image from 'next/image';
 import urlFor from '@/sanity/lib/urlFor';
 import PortableText from 'react-portable-text';
 import { RichTextComponents } from '@/components/RichTextComponents';
-import { blockContentToPlainText } from 'react-portable-text';
+import { Post as PostType } from '@/typings';
 
 type Props = {
   params: {
     slug: string;
   };
 };
+
+export const revalidate = 30;
+
+export async function generateStaticParams() {
+  const query = groq`
+    *[_type == 'post'] {
+        slug
+      }`;
+
+  const slugs: PostType[] = await client.fetch(query);
+  const slugRoutes = slugs.map((slug) => slug.slug.current);
+
+  return slugRoutes.map((slug) => ({
+    slug,
+  }));
+}
 
 const Post = async ({ params: { slug } }: Props) => {
   const query = groq`
@@ -26,7 +42,7 @@ const Post = async ({ params: { slug } }: Props) => {
 
   return (
     <article className='px-10 mb-28'>
-      <section className='space-y-20 border border-[#F7AB0A] text-white'>
+      <section className='space-y-20 border border-[#0a8cf7] text-white'>
         <div className='relative min-h-56 flex flex-col md:flex-row justify-between'>
           <div className='absolute top-0 w-full h-full opacity-10 blur-sm p-10'>
             <Image
@@ -37,7 +53,7 @@ const Post = async ({ params: { slug } }: Props) => {
             />
           </div>
 
-          <section className='p-5 bg-[#F7AB0A] w-full'>
+          <section className='p-5 bg-[#0a8cf7] w-full'>
             <div className='flex flex-col md:flex-row justify-between gap-y-5'>
               <div>
                 <h1 className='text-4xl font-bold'>{post.title}</h1>
