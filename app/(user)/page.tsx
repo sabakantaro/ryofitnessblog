@@ -13,5 +13,9 @@ export const revalidate = 30;
 
 export default async function HomePage() {
   const posts = await client.fetch(query);
-  return <BlogList posts={posts} />;
+  // exclude privacy-policy from posts
+  const filteredPosts = posts.filter(
+    (post: any) => post.slug.current !== 'privacy-policy'
+  );
+  return <BlogList posts={filteredPosts} />;
 }

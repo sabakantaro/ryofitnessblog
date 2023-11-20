@@ -40,6 +40,7 @@ export const RichTextComponents = {
     </blockquote>
   ),
   link: ({ children, value }: any) => {
+    if (!value) return <span>{children}</span>;
     const rel = !value.href.startsWith('/') ? 'noopener noreferrer' : undefined;
 
     return (

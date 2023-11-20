@@ -22,21 +22,26 @@ function Footer() {
             </span>
           </Link>
           <ul className='flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400'>
-            {/* <li>
+            <li>
               <Link href='/' className='hover:underline me-4 md:me-6'>
                 Home
               </Link>
             </li>
             <li>
-              <Link href='/' className='hover:underline me-4 md:me-6'>
+              <Link href='/author/ryo' className='hover:underline me-4 md:me-6'>
                 About
               </Link>
             </li>
             <li>
-              <Link href='/' className='hover:underline'>
+              <Link href='/post/privacy-policy' className='hover:underline me-4 md:me-6'>
                 Privacy Policy
               </Link>
-            </li> */}
+            </li>
+            <li>
+              <Link href='/contact' className='hover:underline'>
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
         <hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />

@@ -66,7 +66,7 @@ const Post = async ({ params: { slug } }: Props) => {
                   })}
                 </p>
               </div>
-              <div className='flex items-center space-x-2'>
+              <a href={`/author/${post.author.slug.current}`} className='flex items-center space-x-2 z-50'>
                 <Image
                   className='rounded-full'
                   src={urlFor(post.author.image).url()}
@@ -77,9 +77,8 @@ const Post = async ({ params: { slug } }: Props) => {
 
                 <div className='w-64'>
                   <h3>{post.author.name}</h3>
-                  <div>{/* TODO: author.bio */}</div>
                 </div>
-              </div>
+              </a>
             </div>
             <div>
               <h2 className='italic pt-10'>{post.description}</h2>
